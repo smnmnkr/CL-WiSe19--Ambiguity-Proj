@@ -41,15 +41,31 @@ class NFA(object):
     #
     #  -------- process -----------
     #
-    def process(self, word, ):
+    def process(self, word: str, trace: list = []):
         """
         Check if the given string is accepted by this automaton.
         Return all accepting paths.
         """
-        
 
-        for char in word:
-            pass
+        if (not word):
+            print(trace)
+            return trace
+
+        if (not trace):
+            trace.append(self.initial_state)
+
+        state_transition: dict = self.transitions.get(trace[-1], None)
+
+        if (not state_transition):
+            return trace
+
+        for state in state_transition.get(word[0], []):
+
+            # create new sub trace, append current state
+            sub_trace: list = trace.copy()
+            sub_trace.append(state)
+
+            self.process(word[1:], trace=sub_trace)
 
     #  -------- export -----------
     #
