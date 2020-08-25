@@ -2,8 +2,8 @@ from automata.nfa import NFA
 from automata.tasks import ambiguity_over_range
 
 # src:
-# Relating the Type of Ambiguity of Finite Automata to the Succinctness of Their Representation
-# Fig. 1.: Example of astrictly polynomially ambiguous nfa.
+# DESCRIPTIONAL COMPLEXITY OF NFA OF DIFFERENT AMBIGUITY
+# Fig. 1.: UFA U4 (p. 997/3)
 #
 config: dict = {
     'states': ['q0', 'q1', 'q2', 'q3'],
