@@ -35,8 +35,8 @@ class NFA(object):
     #
     def process(self, word: str, trace: list = []) -> list:
         """
-        Check if the given string is accepted by this automaton.
-        Return all accepting paths.
+me        Proccess the given string in the automaton.
+        Return all possible paths.
         """
 
         # processing finished returning the trace
