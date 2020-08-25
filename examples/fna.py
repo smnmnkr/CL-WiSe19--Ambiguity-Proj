@@ -49,4 +49,7 @@ config: dict = {
 }
 
 fna: NFA = NFA(**config)
+
+print("---[ ambiguity of FNA example: ]---")
 ambiguity_over_range(fna, 15)
+print("\n")

@@ -35,4 +35,7 @@ config: dict = {
 }
 
 ena: NFA = NFA(**config)
+
+print("---[ ambiguity of ENA example: ]---")
 ambiguity_over_range(ena, 15)
+print("\n")

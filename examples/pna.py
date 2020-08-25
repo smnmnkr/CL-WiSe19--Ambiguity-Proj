@@ -34,4 +34,7 @@ config: dict = {
 }
 
 pna: NFA = NFA(**config)
+
+print("---[ ambiguity of PNA example: ]---")
 ambiguity_over_range(pna, 15)
+print("\n")

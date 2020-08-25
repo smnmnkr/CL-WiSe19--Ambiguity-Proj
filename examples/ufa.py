@@ -30,4 +30,7 @@ config: dict = {
 }
 
 ufa: NFA = NFA(**config)
+
+print("---[ ambiguity of UFA example: ]---")
 ambiguity_over_range(ufa, 15)
+print("\n")
