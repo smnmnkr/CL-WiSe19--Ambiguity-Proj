@@ -1,5 +1,5 @@
 from automata.nfa import NFA
-from automata.util import create_permutations
+from automata.tasks import ambiguity_over_range
 
 # src:
 # Relating the Type of Ambiguity of Finite Automata to the Succinctness of Their Representation
@@ -35,16 +35,4 @@ config: dict = {
 }
 
 ena: NFA = NFA(**config)
-
-for n in range(1, 16):
-
-    max_path_num: int = 0
-
-    for word in create_permutations(ena.alphabet, n):
-
-        word_ambiguity: int = ena.ambiguity(word)
-
-        if (max_path_num < word_ambiguity):
-            max_path_num = word_ambiguity
-
-    print(f"length: {n:02}\t ambiguity: {max_path_num}")
+ambiguity_over_range(ena, 15)
