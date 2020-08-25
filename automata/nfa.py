@@ -73,9 +73,7 @@ class NFA(object):
     #
     def accepts(self, word: str) -> bool:
 
-        trace = list(self.process(word))
-
-        for path in trace:
+        for path in self.process(word):
             if (path[-1] in self.final_states):
                 return True
 
@@ -84,7 +82,14 @@ class NFA(object):
     #  -------- ambiguity -----------
     #
     def ambiguity(self, word: str) -> bool:
-        return len(list(self.process(word)))
+
+        accepting_count: int = 0
+
+        for path in self.process(word):
+            if (path[-1] in self.final_states):
+                accepting_count += 1
+
+        return accepting_count
 
     #  -------- export -----------
     #
