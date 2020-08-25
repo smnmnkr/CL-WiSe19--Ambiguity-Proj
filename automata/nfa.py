@@ -31,45 +31,64 @@ class NFA(object):
 
     #
     #
-    #  -------- validate -----------
-    #
-    def validate(self):
-        """Return True if this automaton is internally consistent."""
-        raise NotImplementedError
-
-    #
-    #
     #  -------- process -----------
     #
-    def process(self, word: str, trace: list = []):
+    def process(self, word: str, trace: list = []) -> list:
         """
         Check if the given string is accepted by this automaton.
         Return all accepting paths.
         """
 
+        # processing finished returning the trace
         if (not word):
-            print(trace)
-            return trace
+            yield trace
 
+        # start processing with initial state
         if (not trace):
             trace.append(self.initial_state)
 
+        # get the current state transitions
         state_transition: dict = self.transitions.get(trace[-1], None)
 
+        # input not accepted
         if (not state_transition):
             return trace
 
-        for state in state_transition.get(word[0], []):
+        # get first letter else empty string
+        first_letter: str = word[0] if (word) else ''
+
+        # iterate over each possible transition
+        for state in state_transition.get(first_letter, []):
 
             # create new sub trace, append current state
             sub_trace: list = trace.copy()
             sub_trace.append(state)
 
-            self.process(word[1:], trace=sub_trace)
+            # start recursive function call
+            yield from self.process(word[1:], trace=sub_trace)
+
+    #
+    #
+    #  -------- accepts -----------
+    #
+    def accepts(self, word: str) -> bool:
+
+        trace = list(self.process(word))
+
+        for path in trace:
+            if (path[-1] in self.final_states):
+                return True
+
+        return False
+
+    #  -------- ambiguity -----------
+    #
+    def ambiguity(self, word: str) -> bool:
+        return len(list(self.process(word)))
 
     #  -------- export -----------
     #
-    def export(self):
+    def export(self) -> dict:
         return {
             'states': self.states,
             'alphabet': self.alphabet,
@@ -80,6 +99,6 @@ class NFA(object):
 
     #  -------- __eq__ -----------
     #
-    def __eq__(self, other):
+    def __eq__(self, other) -> bool:
         """Check if two automata are equal."""
         return vars(self) == vars(other)

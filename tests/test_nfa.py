@@ -12,15 +12,28 @@ config: dict = {
         }
     },
     'initial_state': 'q0',
-    'final_states': ['q1'],
+    'final_states': ['q1', 'q2'],
 }
 
-testNFA = NFA(**config)
+word: str = 'a'
+automaton: NFA = NFA(**config)
 
 
 def test_init():
-    assert testNFA.export() == config
+    assert type(automaton) == NFA
+
+
+def test_export():
+    assert automaton.export() == config
 
 
 def test_process():
-    assert list(testNFA.process("a")) == [['q0', 'q1'], ['q0', 'q2']]
+    assert list(automaton.process(word)) == [['q0', 'q1'], ['q0', 'q2']]
+
+
+def test_accepts():
+    assert automaton.accepts(word) == True
+
+
+def test_ambiguity():
+    assert automaton.ambiguity(word) == 2
