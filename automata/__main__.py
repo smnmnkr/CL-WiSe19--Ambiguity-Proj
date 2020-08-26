@@ -1,0 +1,56 @@
+import json
+import argparse
+
+from automata.nfa import NFA
+from automata.tasks import ambiguity_over_range
+
+#
+#
+#  -------- ARGPARSER -----------
+#
+parser = argparse.ArgumentParser(description='run automata class')
+
+# argument: config file
+parser.add_argument(
+    'configFile',
+    metavar='configFile',
+    help='path to configuration json',
+    type=str,
+    nargs='?',
+)
+
+# argument: config file
+parser.add_argument(
+    '-l',
+    dest='length',
+    help='maximal word length to test',
+    type=int,
+    nargs='?',
+    default=15,
+)
+
+
+def task__ambiguity_over_range(config: dict, length: int) -> None:
+
+    automata: NFA = NFA(**config)
+
+    print(f"[--- {args.configFile}: ---]")
+    ambiguity_over_range(automata, length)
+    print(f"[{'-'*28}]\n")
+
+
+#
+#
+#  -------- __main__ -----------
+#
+if __name__ == '__main__':
+
+    # collect terminal parameters
+    args = parser.parse_args()
+
+    # load JSON config
+    with open(args.configFile) as json_file:
+        config = json.load(json_file)
+
+    # run ambiguity task
+    task__ambiguity_over_range(config, args.length)
