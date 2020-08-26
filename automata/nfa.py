@@ -12,16 +12,13 @@ class NFA(object):
     #  -------- Init -----------
     #
     def __init__(
-            self,
-            states: set,
-            alphabet: set,
-            transitions: dict,
-            initial_state: str,
-            final_states: set,
+        self,
+        states: set,
+        alphabet: set,
+        transitions: dict,
+        initial_state: str,
+        final_states: set,
     ):
-        """
-            Initialize a complete automaton.
-        """
 
         self.states = states
         self.alphabet = alphabet
@@ -35,7 +32,7 @@ class NFA(object):
     #
     def process(self, word: str, trace: list = []) -> list:
         """
-me        Proccess the given string in the automaton.
+        Proccess the given string in the automaton.
         Return all possible paths.
         """
 
@@ -52,7 +49,7 @@ me        Proccess the given string in the automaton.
 
         # input not accepted
         if (not state_transition):
-            return trace
+            return
 
         # get first letter else empty string
         first_letter: str = word[0] if (word) else ''
@@ -71,25 +68,25 @@ me        Proccess the given string in the automaton.
     #
     #  -------- accepts -----------
     #
-    def accepts(self, word: str) -> bool:
+    def accepts(self, word: str) -> (bool, list):
+
+        accepting: bool = False
+        accepting_path: list = []
 
         for path in self.process(word):
             if (path[-1] in self.final_states):
-                return True
+                accepting = True
+                accepting_path.append(path)
 
-        return False
+        return accepting, accepting_path
 
     #  -------- ambiguity -----------
     #
-    def ambiguity(self, word: str) -> bool:
+    def ambiguity(self, word: str) -> int:
 
-        accepting_count: int = 0
+        _a, accepting_path = self.accepts(word)
 
-        for path in self.process(word):
-            if (path[-1] in self.final_states):
-                accepting_count += 1
-
-        return accepting_count
+        return len(accepting_path)
 
     #  -------- export -----------
     #
@@ -105,5 +102,4 @@ me        Proccess the given string in the automaton.
     #  -------- __eq__ -----------
     #
     def __eq__(self, other) -> bool:
-        """Check if two automata are equal."""
         return vars(self) == vars(other)
