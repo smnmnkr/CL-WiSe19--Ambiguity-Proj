@@ -1,11 +1,11 @@
 from automata.nfa import NFA
 
 config: dict = {
-    'states': ['q0', 'q1', 'q2'],
+    'states': ['q0', 'q1', 'q2', 'q3'],
     'alphabet': ['a'],
     'transitions': {
         'q0': {
-            'a': ['q1', 'q2']
+            'a': ['q1', 'q2', 'q3']
         },
         'q1': {
             'a': ['q1']
@@ -15,8 +15,13 @@ config: dict = {
     'final_states': ['q1', 'q2'],
 }
 
-word: str = 'a'
 automaton: NFA = NFA(**config)
+
+word: str = 'a'
+
+all_path: list = [['q0', 'q1'], ['q0', 'q2'], ['q0', 'q3']]
+accepting_path: list = [['q0', 'q1'], ['q0', 'q2']]
+ambiguity: int = 2
 
 
 def test_init():
@@ -28,12 +33,13 @@ def test_export():
 
 
 def test_process():
-    assert list(automaton.process(word)) == [['q0', 'q1'], ['q0', 'q2']]
+    assert list(automaton.process(word)) == all_path
 
 
 def test_accepts():
-    assert automaton.accepts(word) == True
+    assert automaton.accepts(word)[0] == True
+    assert automaton.accepts(word)[1] == accepting_path
 
 
 def test_ambiguity():
-    assert automaton.ambiguity(word) == 2
+    assert automaton.ambiguity(word) == ambiguity
