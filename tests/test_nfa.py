@@ -1,21 +1,14 @@
+import pytest
+
 from automata.nfa import NFA
 
-config: dict = {
-    'states': ['q0', 'q1', 'q2', 'q3'],
-    'alphabet': ['a'],
-    'transitions': {
-        'q0': {
-            'a': ['q1', 'q2', 'q3']
-        },
-        'q1': {
-            'a': ['q1']
-        }
-    },
-    'initial_state': 'q0',
-    'final_states': ['q1', 'q2'],
-}
+automaton: NFA = NFA(**pytest.automata_config)
 
-automaton: NFA = NFA(**config)
+word: str = 'a'
+
+all_path: list = [['q0', 'q1'], ['q0', 'q2'], ['q0', 'q3']]
+accepting_path: list = [['q0', 'q1'], ['q0', 'q2']]
+ambiguity: int = 2
 
 word: str = 'a'
 
@@ -29,7 +22,7 @@ def test_init():
 
 
 def test_export():
-    assert automaton.export() == config
+    assert automaton.export() == pytest.automata_config
 
 
 def test_process():
@@ -37,7 +30,7 @@ def test_process():
 
 
 def test_accepts():
-    assert automaton.accepts(word)[0] == True
+    assert automaton.accepts(word)[0] is True
     assert automaton.accepts(word)[1] == accepting_path
 
 

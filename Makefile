@@ -14,5 +14,8 @@ example:
 install:
 	@pip install .
 
+lint:
+	@flake8
+
 clean:
 	rm -rf logs cache .pytest_cache

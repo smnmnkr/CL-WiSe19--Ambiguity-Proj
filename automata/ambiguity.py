@@ -8,12 +8,11 @@ def ambiguity_over_range(
         automaton: NFA,
         maximum: int,
         minimum: int = 1,
-) -> None:
+) -> list:
 
-    for n in range(minimum, maximum + 1):
-        word, max_path_num = degree_of_ambiguity(automaton, n)
-
-        print(f"length: {n:02}\t ambiguity: {max_path_num}")
+    return [
+        degree_of_ambiguity(automaton, n) for n in range(minimum, maximum + 1)
+    ]
 
 
 # -------- degree_of_ambiguity -----------
@@ -31,4 +30,4 @@ def degree_of_ambiguity(automaton: NFA, length: int) -> tuple:
             max_word = word
             max_path_num = word_ambiguity
 
-    return word, max_path_num
+    return max_word, max_path_num

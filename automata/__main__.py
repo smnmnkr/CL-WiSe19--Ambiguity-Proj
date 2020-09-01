@@ -2,7 +2,7 @@ import json
 import argparse
 
 from automata.nfa import NFA
-from automata.tasks import ambiguity_over_range
+from automata.ambiguity import ambiguity_over_range
 
 #
 #
@@ -33,9 +33,13 @@ parser.add_argument(
 def task__ambiguity_over_range(config: dict, length: int) -> None:
 
     automata: NFA = NFA(**config)
+    data: list = ambiguity_over_range(automata, length)
 
     print(f"[--- {args.configFile}: ---]")
-    ambiguity_over_range(automata, length)
+
+    for n, row in enumerate(data):
+        print(f"length: {n:02}\t ambiguity: {row[1]}")
+
     print(f"[{'-'*28}]\n")
 
 
