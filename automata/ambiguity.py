@@ -5,9 +5,9 @@ from automata.util import create_permutations
 # -------- ambiguity_over_range -----------
 #
 def ambiguity_over_range(
-    automaton: NFA,
-    maximum: int,
-    minimum: int = 1,
+        automaton: NFA,
+        maximum: int,
+        minimum: int = 1,
 ) -> list:
 
     return [
@@ -30,4 +30,4 @@ def degree_of_ambiguity(automaton: NFA, length: int) -> tuple:
             max_word = word
             max_path_num = word_ambiguity
 
-    return word, max_path_num
+    return max_word, max_path_num
