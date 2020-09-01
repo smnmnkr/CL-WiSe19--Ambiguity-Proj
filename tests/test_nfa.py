@@ -24,7 +24,7 @@ def test_process():
 
 
 def test_accepts():
-    assert automaton.accepts(word)[0] == True
+    assert automaton.accepts(word)[0] is True
     assert automaton.accepts(word)[1] == accepting_path
 
 
