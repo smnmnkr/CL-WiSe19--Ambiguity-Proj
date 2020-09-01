@@ -12,12 +12,12 @@ class NFA(object):
     #  -------- Init -----------
     #
     def __init__(
-        self,
-        states: set,
-        alphabet: set,
-        transitions: dict,
-        initial_state: str,
-        final_states: set,
+            self,
+            states: set,
+            alphabet: set,
+            transitions: dict,
+            initial_state: str,
+            final_states: set,
     ):
 
         self.states = states
