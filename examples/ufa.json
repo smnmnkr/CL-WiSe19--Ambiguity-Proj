@@ -1,5 +1,5 @@
 {
-  "states": ["q0", "q1", "q2", "q3"],
+  "states": ["q0", "q1", "q2"],
   "alphabet": ["0", "1"],
   "transitions": {
     "q0": {
@@ -13,11 +13,8 @@
     "q2": {
       "0": ["q3"],
       "1": ["q0"]
-    },
-    "q3": {
-      "1": ["q3"]
     }
   },
   "initial_state": "q0",
-  "final_states": ["q3"]
+  "final_states": ["q2"]
 }
