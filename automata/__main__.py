@@ -4,6 +4,8 @@ import argparse
 from automata.nfa import NFA
 from automata.ambiguity import ambiguity_over_range
 
+from automata.util import time_track
+
 #
 #
 #  -------- ARGPARSER -----------
@@ -33,14 +35,14 @@ parser.add_argument(
 def task__ambiguity_over_range(config: dict, length: int) -> None:
 
     automata: NFA = NFA(**config)
-    data: list = ambiguity_over_range(automata, length)
+    data, duration = time_track(ambiguity_over_range)(automata, length)
 
     print(f"[--- {args.configFile}: ---]")
 
     for n, row in enumerate(data):
         print(f"length: {n+1:02}\t ambiguity: {row[1]}")
 
-    print(f"[{'-'*28}]\n")
+    print(f"[--- duration: {duration:2.4f} sec ---]\n")
 
 
 #
