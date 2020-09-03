@@ -3,7 +3,7 @@
 MODULE := automata
 
 test:
-	@python3 -m pytest -s
+	@python3 -m pytest -s -v
 
 example:
 	@python3 -m $(MODULE) ./examples/ufa.json 
@@ -19,3 +19,4 @@ lint:
 
 clean:
 	rm -rf logs cache .pytest_cache
+	clear

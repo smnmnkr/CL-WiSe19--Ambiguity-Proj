@@ -10,19 +10,13 @@ all_path: list = [['q0', 'q1'], ['q0', 'q2'], ['q0', 'q3']]
 accepting_path: list = [['q0', 'q1'], ['q0', 'q2']]
 ambiguity: int = 2
 
-word: str = 'a'
-
-all_path: list = [['q0', 'q1'], ['q0', 'q2'], ['q0', 'q3']]
-accepting_path: list = [['q0', 'q1'], ['q0', 'q2']]
-ambiguity: int = 2
-
 
 def test_init():
     assert type(automaton) == NFA
 
 
-def test_export():
-    assert automaton.export() == pytest.automata_config
+def test_config():
+    assert automaton.__dict__ == pytest.automata_config
 
 
 def test_process():

@@ -1,4 +1,18 @@
 #
+# Visual Studio Code ignores
+# src: https://github.com/github/gitignore/blob/master/Global/VisualStudioCode.gitignore
+#
+
+# General
+.vscode/*
+*.code-workspace
+
+# Local History for Visual Studio Code
+.history/
+
+#------------------------------------------------#
+
+#
 # macOS ignores
 # src: https://github.com/github/gitignore/blob/320a610b9ffba3ff28166370b6dd9f73096e34b7/Global/macOS.gitignore
 #
@@ -30,6 +44,7 @@ Network Trash Folder
 Temporary Items
 .apdisk
 
+#------------------------------------------------#
 
 #
 # Python related ignores
