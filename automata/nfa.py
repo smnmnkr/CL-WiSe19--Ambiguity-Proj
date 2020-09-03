@@ -88,18 +88,14 @@ class NFA(object):
 
         return len(accepting_path)
 
-    #  -------- export -----------
-    #
-    def export(self) -> dict:
-        return {
-            'states': self.states,
-            'alphabet': self.alphabet,
-            'transitions': self.transitions,
-            'initial_state': self.initial_state,
-            'final_states': self.final_states,
-        }
-
     #  -------- __eq__ -----------
     #
+
     def __eq__(self, other) -> bool:
         return vars(self) == vars(other)
+
+    #  --------__dict__ -----------
+    #
+    @property
+    def __dict__(self):
+        return {s: getattr(self, s, None) for s in self.__slots__}
