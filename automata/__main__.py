@@ -38,7 +38,7 @@ def task__ambiguity_over_range(config: dict, length: int) -> None:
     print(f"[--- {args.configFile}: ---]")
 
     for n, row in enumerate(data):
-        print(f"length: {n:02}\t ambiguity: {row[1]}")
+        print(f"length: {n+1:02}\t ambiguity: {row[1]}")
 
     print(f"[{'-'*28}]\n")
 
