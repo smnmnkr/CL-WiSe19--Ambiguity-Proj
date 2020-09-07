@@ -15,11 +15,7 @@ class NFA(Automaton):
         initial_state: str,
         final_states: set,
     ):
-        super().__init__(states,
-                         alphabet,
-                         transitions,
-                         initial_state,
-                         final_states)
+        super().__init__(states, alphabet, transitions, initial_state, final_states)
 
     #
     #
@@ -32,22 +28,22 @@ class NFA(Automaton):
         """
 
         # processing finished returning the trace
-        if (not word):
+        if not word:
             yield trace
 
         # start processing with initial state
-        if (not trace):
+        if not trace:
             trace.append(self.initial_state)
 
         # get the current state transitions
         state_transition: dict = self.transitions.get(trace[-1], None)
 
         # input not accepted
-        if (not state_transition):
+        if not state_transition:
             return
 
         # get first letter else empty string
-        first_letter: str = word[0] if (word) else ''
+        first_letter: str = word[0] if (word) else ""
 
         # iterate over each possible transition
         for state in state_transition.get(first_letter, []):
@@ -69,7 +65,7 @@ class NFA(Automaton):
         accepting_path: list = []
 
         for path in self.process(word):
-            if (path[-1] in self.final_states):
+            if path[-1] in self.final_states:
                 accepting = True
                 accepting_path.append(path)
 
