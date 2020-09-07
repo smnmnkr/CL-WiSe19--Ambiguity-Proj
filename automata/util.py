@@ -1,5 +1,4 @@
 import itertools
-
 from functools import wraps
 from time import time
 
@@ -26,4 +25,5 @@ def time_track(func):
         duration = t_end - t_start
 
         return result, duration
+
     return wrap

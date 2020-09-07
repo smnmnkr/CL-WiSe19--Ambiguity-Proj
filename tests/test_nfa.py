@@ -4,10 +4,10 @@ from automata.nfa import NFA
 
 automaton: NFA = NFA(**pytest.automata_config)
 
-word: str = 'a'
+word: str = "a"
 
-all_path: list = [['q0', 'q1'], ['q0', 'q2'], ['q0', 'q3']]
-accepting_path: list = [['q0', 'q1'], ['q0', 'q2']]
+all_path: list = [["q0", "q1"], ["q0", "q2"], ["q0", "q3"]]
+accepting_path: list = [["q0", "q1"], ["q0", "q2"]]
 ambiguity: int = 2
 
 

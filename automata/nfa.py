@@ -1,11 +1,7 @@
-class NFA(object):
-    __slots__ = [
-        'states',
-        'alphabet',
-        'transitions',
-        'initial_state',
-        'final_states',
-    ]
+from automata.automaton import Automaton
+
+
+class NFA(Automaton):
 
     #
     #
@@ -19,12 +15,9 @@ class NFA(object):
         initial_state: str,
         final_states: set,
     ):
-
-        self.states = states
-        self.alphabet = alphabet
-        self.transitions = transitions
-        self.initial_state = initial_state
-        self.final_states = final_states
+        super().__init__(
+            states, alphabet, transitions, initial_state, final_states
+        )
 
     #
     #
@@ -37,22 +30,22 @@ class NFA(object):
         """
 
         # processing finished returning the trace
-        if (not word):
+        if not word:
             yield trace
 
         # start processing with initial state
-        if (not trace):
+        if not trace:
             trace.append(self.initial_state)
 
         # get the current state transitions
         state_transition: dict = self.transitions.get(trace[-1], None)
 
         # input not accepted
-        if (not state_transition):
+        if not state_transition:
             return
 
         # get first letter else empty string
-        first_letter: str = word[0] if (word) else ''
+        first_letter: str = word[0] if (word) else ""
 
         # iterate over each possible transition
         for state in state_transition.get(first_letter, []):
@@ -74,7 +67,7 @@ class NFA(object):
         accepting_path: list = []
 
         for path in self.process(word):
-            if (path[-1] in self.final_states):
+            if path[-1] in self.final_states:
                 accepting = True
                 accepting_path.append(path)
 
@@ -88,14 +81,8 @@ class NFA(object):
 
         return len(accepting_path)
 
-    #  -------- __eq__ -----------
-    #
-
-    def __eq__(self, other) -> bool:
-        return vars(self) == vars(other)
-
     #  --------__dict__ -----------
     #
     @property
     def __dict__(self):
-        return {s: getattr(self, s, None) for s in self.__slots__}
+        return super().__dict__
