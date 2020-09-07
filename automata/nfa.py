@@ -1,11 +1,7 @@
-class NFA(object):
-    __slots__ = [
-        'states',
-        'alphabet',
-        'transitions',
-        'initial_state',
-        'final_states',
-    ]
+from automata.automaton import Automaton
+
+
+class NFA(Automaton):
 
     #
     #
@@ -19,12 +15,11 @@ class NFA(object):
         initial_state: str,
         final_states: set,
     ):
-
-        self.states = states
-        self.alphabet = alphabet
-        self.transitions = transitions
-        self.initial_state = initial_state
-        self.final_states = final_states
+        super().__init__(states,
+                         alphabet,
+                         transitions,
+                         initial_state,
+                         final_states)
 
     #
     #
@@ -88,14 +83,8 @@ class NFA(object):
 
         return len(accepting_path)
 
-    #  -------- __eq__ -----------
-    #
-
-    def __eq__(self, other) -> bool:
-        return vars(self) == vars(other)
-
     #  --------__dict__ -----------
     #
     @property
     def __dict__(self):
-        return {s: getattr(self, s, None) for s in self.__slots__}
+        return super().__dict__
