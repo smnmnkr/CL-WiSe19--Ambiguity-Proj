@@ -18,5 +18,5 @@ lint:
 	@pre-commit run --all-files
 
 clean:
-	rm -rf logs cache .pytest_cache
+	rm -rf logs cache .pytest_cache .mypy_cache
 	clear
