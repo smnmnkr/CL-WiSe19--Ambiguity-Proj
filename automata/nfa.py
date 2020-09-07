@@ -15,7 +15,9 @@ class NFA(Automaton):
         initial_state: str,
         final_states: set,
     ):
-        super().__init__(states, alphabet, transitions, initial_state, final_states)
+        super().__init__(
+            states, alphabet, transitions, initial_state, final_states
+        )
 
     #
     #

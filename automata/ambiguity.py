@@ -4,9 +4,13 @@ from automata.util import create_permutations
 
 # -------- ambiguity_over_range -----------
 #
-def ambiguity_over_range(automaton: NFA, maximum: int, minimum: int = 1) -> list:
+def ambiguity_over_range(
+    automaton: NFA, maximum: int, minimum: int = 1
+) -> list:
 
-    return [degree_of_ambiguity(automaton, n) for n in range(minimum, maximum + 1)]
+    return [
+        degree_of_ambiguity(automaton, n) for n in range(minimum, maximum + 1)
+    ]
 
 
 # -------- degree_of_ambiguity -----------

@@ -2,7 +2,13 @@ from abc import ABC, abstractmethod
 
 
 class Automaton(ABC):
-    __slots__ = ["states", "alphabet", "transitions", "initial_state", "final_states"]
+    __slots__ = [
+        "states",
+        "alphabet",
+        "transitions",
+        "initial_state",
+        "final_states",
+    ]
 
     #  -------- Init -----------
     #

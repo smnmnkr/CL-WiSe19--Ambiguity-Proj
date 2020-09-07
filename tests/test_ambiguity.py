@@ -11,4 +11,8 @@ def test_degree_of_ambiguity():
 
 
 def test_ambiguity_over_range():
-    assert ambiguity_over_range(automaton, 3) == [("a", 2), ("aa", 1), ("aaa", 1)]
+    assert ambiguity_over_range(automaton, 3) == [
+        ("a", 2),
+        ("aa", 1),
+        ("aaa", 1),
+    ]
