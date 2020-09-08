@@ -41,7 +41,6 @@ class Automaton(ABC):
 
     #  -------- __eq__ -----------
     #
-
     def __eq__(self, other) -> bool:
         return vars(self) == vars(other)
 
