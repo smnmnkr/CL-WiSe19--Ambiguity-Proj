@@ -1,4 +1,14 @@
 #
+# Custom ignores
+#
+
+# Custom/User Content
+custom/*
+user/*
+
+#------------------------------------------------#
+
+#
 # Visual Studio Code ignores
 # src: https://github.com/github/gitignore/blob/master/Global/VisualStudioCode.gitignore
 #
