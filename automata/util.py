@@ -2,10 +2,9 @@ import itertools
 from functools import wraps
 from time import time
 
+
 # -------- create_permutations -----------
 #
-
-
 def create_permutations(chars: list, n: int):
 
     for item in itertools.product(chars, repeat=n):
