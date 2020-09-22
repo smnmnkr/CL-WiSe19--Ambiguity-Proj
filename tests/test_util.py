@@ -11,4 +11,9 @@ def test_create_permutations_n1():
 
 def test_create_permutations_n2():
     assert set(create_permutations(alphabet_1, 2)) == {"aa"}
-    assert set(create_permutations(alphabet_2, 2)) == {"ab", "ba", "aa", "bb"}
+    assert set(create_permutations(alphabet_2, 2)) == {
+        "ab",
+        "ba",
+        "aa",
+        "bb",
+    }

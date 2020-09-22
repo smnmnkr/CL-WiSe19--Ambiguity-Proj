@@ -26,7 +26,7 @@ class NFA(Automaton):
     def process(self, word: str, trace: list = []) -> list:
         """
         Proccess the given string in the automaton.
-        Return all possible paths.
+        Return all possible traces.
         """
 
         # processing finished returning the trace
@@ -62,6 +62,10 @@ class NFA(Automaton):
     #  -------- accepts -----------
     #
     def accepts(self, word: str) -> (bool, list):
+        """
+        Proccess the given string in the automaton.
+        Returns if string is accepted and every accepting path.
+        """
 
         accepting: bool = False
         accepting_path: list = []
@@ -76,6 +80,10 @@ class NFA(Automaton):
     #  -------- ambiguity -----------
     #
     def ambiguity(self, word: str) -> int:
+        """
+        Proccess the given string in the automaton.
+        Returns the number of accepting path.
+        """
 
         _a, accepting_path = self.accepts(word)
 
