@@ -2,6 +2,7 @@ import argparse
 import json
 
 from automata.ambiguity import ambiguity_over_range
+from automata.language import language_over_range
 from automata.nfa import NFA
 from automata.util import time_track
 
@@ -31,15 +32,33 @@ parser.add_argument(
 )
 
 
-def task__ambiguity_over_range(config: dict, length: int) -> None:
+#  -------- task__ambiguity_over_range -----------
+#
+def task__ambiguity_over_range(automaton: NFA, length: int) -> None:
 
-    automata: NFA = NFA(**config)
-    data, duration = time_track(ambiguity_over_range)(automata, length)
+    data, duration = time_track(ambiguity_over_range)(automaton, length)
 
-    print(f"[--- {args.configFile}: ---]")
+    print(f"[--- ambiguity: {args.configFile}: ---]")
 
     for n, row in enumerate(data):
         print(f"length: {n+1:02}\t ambiguity: {row[1]}")
+
+    print(f"[--- duration: {duration:2.4f} sec ---]\n")
+
+
+#  -------- task__language_over_range -----------
+#
+def task__language_over_range(automaton: NFA, length: int) -> None:
+
+    data, duration = time_track(language_over_range)(automaton, length)
+
+    print(f"[--- language: {args.configFile}: ---]")
+
+    for n, row in enumerate(data):
+
+        print(
+            f"length: {n+1:02}\t language: |{len(row):05}| : {row[:5]}{'...' if len(row) > 5 else ''}"
+        )
 
     print(f"[--- duration: {duration:2.4f} sec ---]\n")
 
@@ -57,5 +76,9 @@ if __name__ == "__main__":
     with open(args.configFile) as json_file:
         config = json.load(json_file)
 
-    # run ambiguity task
-    task__ambiguity_over_range(config, args.length)
+    # init automaton
+    automaton: NFA = NFA(**config)
+
+    # run tasks
+    task__ambiguity_over_range(automaton, args.length)
+    task__language_over_range(automaton, args.length)
