@@ -4,7 +4,9 @@ from automata.util import create_permutations
 
 #  -------- language_over_range -----------
 #
-def language_over_range(automaton: NFA, maximum: int, minimum: int = 1) -> list:
+def language_over_range(
+    automaton: NFA, maximum: int, minimum: int = 1
+) -> list:
 
     return [
         generate_language(automaton, n) for n in range(minimum, maximum + 1)

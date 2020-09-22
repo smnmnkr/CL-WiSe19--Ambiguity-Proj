@@ -9,7 +9,8 @@ def ambiguity_over_range(
 ) -> list:
 
     return [
-        degree_of_ambiguity(automaton, n) for n in range(minimum, maximum + 1)
+        degree_of_ambiguity(automaton, n)
+        for n in range(minimum, maximum + 1)
     ]
 
 
